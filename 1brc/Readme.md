@@ -44,7 +44,7 @@ with `go run baseline.go`.
   valid station name as per the constraints above and any data distribution
   (number of measurements per station) must be supported
 
-### Performance:
+# Performance
 
 | Solution | Runtime   | Top heap | GC Occurrences | GC Avg Wall Duration | GC Wall Duration |  
 |----------|-----------|----------|----------------|----------------------|------------------|
