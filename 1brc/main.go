@@ -48,7 +48,7 @@ func main() {
 	}
 
 	if *name == "" {
-		log.Fatalf("Missing filename param")
+		log.Fatalf("Filename param is missing")
 	}
 
 	sol3.Run("./data/" + *name)
