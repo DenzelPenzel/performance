@@ -5,6 +5,7 @@ import (
 	"github.com/draculaas/1brc/sol1"
 	"github.com/draculaas/1brc/sol2"
 	"github.com/draculaas/1brc/sol3"
+	"github.com/draculaas/1brc/sol4"
 	"github.com/stretchr/testify/assert"
 	"io/fs"
 	"os"
@@ -62,6 +63,17 @@ func Test_TestSol3(t *testing.T) {
 	for _, name := range fileNames {
 		t.Run(name, func(t *testing.T) {
 			got := sol3.Run(name + ".txt")
+			want := readFile(name + ".out")
+			assert.Equal(t, want, got)
+		})
+	}
+}
+
+func Test_TestSol4(t *testing.T) {
+	fileNames := find("./test_cases", ".txt")
+	for _, name := range fileNames {
+		t.Run(name, func(t *testing.T) {
+			got := sol4.Run(name + ".txt")
 			want := readFile(name + ".out")
 			assert.Equal(t, want, got)
 		})

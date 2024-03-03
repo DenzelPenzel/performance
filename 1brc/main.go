@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/draculaas/1brc/sol3"
+	"github.com/draculaas/1brc/sol4"
 	"log"
 	"os"
 	"runtime"
@@ -51,7 +51,7 @@ func main() {
 		log.Fatalf("Filename param is missing")
 	}
 
-	sol3.Run("./data/" + *name)
+	sol4.Run("./data/" + *name)
 
 	fmt.Println(time.Now().Sub(start))
 

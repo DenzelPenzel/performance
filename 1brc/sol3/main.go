@@ -38,9 +38,8 @@ const (
 func Run(fileName string) string {
 	numGoroutines := runtime.NumCPU()
 	data := common.Mmap(fileName)
-	size := len(data)
-	chunkSize := size / numGoroutines
-	chunks := make([]int, 0, chunkSize)
+	chunkSize := len(data) / numGoroutines
+	chunks := make([]int, 0, numGoroutines)
 	start := 0
 
 	for start < len(data) {
@@ -49,20 +48,17 @@ func Run(fileName string) string {
 			chunks = append(chunks, len(data))
 			break
 		}
-		head := start
-		for ; head < len(data); head++ {
-			if data[head] == '\n' {
-				head++
+		for ; start < len(data); start++ {
+			if data[start] == '\n' {
+				start++
 				break
 			}
 		}
-		if head == len(data) {
+		if start == len(data) {
 			chunks = append(chunks, len(data))
 			break
-		} else {
-			chunks = append(chunks, head)
-			start = head
 		}
+		chunks = append(chunks, start)
 	}
 
 	start = 0
@@ -119,9 +115,10 @@ func Run(fileName string) string {
 
 	wg.Wait()
 
+	// get the total number of cities
 	totalCities := 0
 	for i := range maps {
-		totalCities += len(maps[i].keys)
+		totalCities += len(maps[i].Keys())
 	}
 
 	cities := make([]string, totalCities)
